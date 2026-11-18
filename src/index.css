@@ -1,0 +1,460 @@
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Strict Desktop-App Typography Scale (Scan-First Density) */
+  --text-2xs: 0.6875rem; /* 11px - Timestamps, keyboard shortcut kbd tags, badges */
+  --text-xs:  0.75rem;   /* 12px - Compact timeline cards, metadata, column headers */
+  --text-sm:  0.8125rem; /* 13px - Default UI body, backlog items, buttons, inputs */
+  --text-base: 0.875rem; /* 14px - Section titles, modal body text */
+  --text-lg:  1rem;      /* 16px - Modal headers, active date title */
+  --text-xl:  1.25rem;   /* 20px - Ritual step headers */
+  --text-timer: 3.5rem;  /* 56px - Focus mode tabular countdown */
+
+  /* Architectural Radii */
+  --radius-xs: 4px;      /* Timeline time-blocks, kbd tags */
+  --radius-sm: 6px;      /* Buttons, inputs, dropdown items */
+  --radius-md: 8px;      /* Backlog cards, popover menus */
+  --radius-lg: 12px;     /* Modals, command palette */
+
+  /* 4px Spatial Grid System */
+  --header-height: 48px;
+  --left-rail-width: 300px;
+  --right-rail-width: 272px;
+
+  /* Live Indicator Signal (Cron / Braun International Orange) */
+  --signal-now: #E54D2E;
+  --signal-now-pulse: rgba(229, 77, 46, 0.25);
+}
+
+/* ==========================================================================
+   1. WARM PAPER (Default Light — Radix Sand / Notion Warm Daylight)
+   Zero-glare warm alabaster designed for comfortable 8-hour daytime planning
+   ========================================================================== */
+:root[data-theme='paper'] {
+  --bg-canvas: #F9F8F6;
+  --bg-panel: #F3F1ED;
+  --bg-elevated: #FFFFFF;
+  --bg-hover: #EAE7E1;
+  --bg-active: #E2DFD7;
+  --border-hairline: #E4E2DC;
+  --border-strong: #D0CDC4;
+
+  --text-primary: #161615;
+  --text-secondary: #575652;
+  --text-muted: #8C8A84;
+
+  --accent-primary: #161615;
+  --accent-contrast-text: #FAF9F6;
+  --focus-ring: 0 0 0 2px #F9F8F6, 0 0 0 4px #161615;
+
+  --timeline-hour-line: #E9E7E0;
+  --timeline-half-line: #F2F0EA;
+  --shadow-float: 0 12px 32px -4px rgba(22, 22, 21, 0.08), 0 2px 6px -1px rgba(22, 22, 21, 0.04);
+  --shadow-menu: 0 4px 16px -2px rgba(22, 22, 21, 0.06), 0 1px 3px rgba(22, 22, 21, 0.04);
+
+  /* 3-Tuple Semantic Category Palette (Bg Tint, 3px Spine, Hue-Matched Text) */
+  --cat-deep-bg: #EEF2FF;     --cat-deep-spine: #3B5CCC;     --cat-deep-text: #1E3A8A;
+  --cat-meeting-bg: #FEF3C7;  --cat-meeting-spine: #D97706;  --cat-meeting-text: #78350F;
+  --cat-admin-bg: #ECFDF5;    --cat-admin-spine: #059669;    --cat-admin-text: #064E3B;
+  --cat-personal-bg: #FCE7F3; --cat-personal-spine: #DB2777; --cat-personal-text: #831843;
+  --cat-break-bg: #F1F5F9;    --cat-break-spine: #64748B;    --cat-break-text: #334155;
+}
+
+/* ==========================================================================
+   2. CRISP DAYLIGHT (Pure Neutral Light — Vercel Geist / Apple macOS Light)
+   High-clarity neutral white & cool slate for bright studio environments
+   ========================================================================== */
+:root[data-theme='daylight'] {
+  --bg-canvas: #FFFFFF;
+  --bg-panel: #FAFAFA;
+  --bg-elevated: #FFFFFF;
+  --bg-hover: #F2F2F2;
+  --bg-active: #E6E6E6;
+  --border-hairline: #EAEAEA;
+  --border-strong: #D4D4D4;
+
+  --text-primary: #171717;
+  --text-secondary: #525252;
+  --text-muted: #8E8E8E;
+
+  --accent-primary: #171717;
+  --accent-contrast-text: #FFFFFF;
+  --focus-ring: 0 0 0 2px #FFFFFF, 0 0 0 4px #171717;
+
+  --timeline-hour-line: #EFEFEF;
+  --timeline-half-line: #F7F7F7;
+  --shadow-float: 0 12px 32px -4px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --shadow-menu: 0 4px 16px -2px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+
+  --cat-deep-bg: #F0F4FF;     --cat-deep-spine: #2563EB;     --cat-deep-text: #1E3A8A;
+  --cat-meeting-bg: #FFFBEB;  --cat-meeting-spine: #D97706;  --cat-meeting-text: #78350F;
+  --cat-admin-bg: #F0FDF4;    --cat-admin-spine: #16A34A;    --cat-admin-text: #14532D;
+  --cat-personal-bg: #FDF2F8; --cat-personal-spine: #E11D48; --cat-personal-text: #881337;
+  --cat-break-bg: #F8FAFC;    --cat-break-spine: #64748B;    --cat-break-text: #334155;
+}
+
+/* ==========================================================================
+   3. GEIST OBSIDIAN (Default Dark — Pure Achromatic Matte Carbon)
+   Zero blue/purple cast; true neutral dark with crisp hairline separation
+   ========================================================================== */
+:root[data-theme='obsidian'] {
+  --bg-canvas: #0A0A0A;
+  --bg-panel: #111111;
+  --bg-elevated: #171717;
+  --bg-hover: #1F1F1F;
+  --bg-active: #262626;
+  --border-hairline: #222222;
+  --border-strong: #333333;
+
+  --text-primary: #EDEDEF;
+  --text-secondary: #A1A1AA;
+  --text-muted: #63636B;
+
+  --accent-primary: #EDEDEF;
+  --accent-contrast-text: #0A0A0A;
+  --focus-ring: 0 0 0 2px #0A0A0A, 0 0 0 4px #EDEDEF;
+
+  --timeline-hour-line: #1A1A1A;
+  --timeline-half-line: #131313;
+  --shadow-float: 0 16px 40px -4px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.07);
+  --shadow-menu: 0 4px 16px -2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  --cat-deep-bg: rgba(59, 130, 246, 0.13);   --cat-deep-spine: #3B82F6;     --cat-deep-text: #DBEAFE;
+  --cat-meeting-bg: rgba(245, 158, 11, 0.13);--cat-meeting-spine: #F59E0B;  --cat-meeting-text: #FEF3C7;
+  --cat-admin-bg: rgba(16, 185, 129, 0.13);  --cat-admin-spine: #10B981;    --cat-admin-text: #D1FAE5;
+  --cat-personal-bg: rgba(236, 72, 153, 0.13);--cat-personal-spine: #EC4899;--cat-personal-text: #FCE7F3;
+  --cat-break-bg: rgba(148, 163, 184, 0.11); --cat-break-spine: #64748B;    --cat-break-text: #E2E8F0;
+}
+
+/* ==========================================================================
+   4. GRAPHITE SLATE (Soft Dark — Linear LCH / Eye-Care Low-Contrast Charcoal)
+   Eliminates pure-black OLED halation for comfortable late-evening work
+   ========================================================================== */
+:root[data-theme='graphite'] {
+  --bg-canvas: #121316;
+  --bg-panel: #17181C;
+  --bg-elevated: #1E2025;
+  --bg-hover: #25272D;
+  --bg-active: #2C2F36;
+  --border-hairline: #262930;
+  --border-strong: #363A44;
+
+  --text-primary: #E4E5E9;
+  --text-secondary: #989CA6;
+  --text-muted: #5F636E;
+
+  --accent-primary: #E4E5E9;
+  --accent-contrast-text: #121316;
+  --focus-ring: 0 0 0 2px #121316, 0 0 0 4px #E4E5E9;
+
+  --timeline-hour-line: #1D1F24;
+  --timeline-half-line: #17191D;
+  --shadow-float: 0 16px 36px -4px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-menu: 0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  --cat-deep-bg: rgba(96, 165, 250, 0.14);   --cat-deep-spine: #60A5FA;     --cat-deep-text: #E0F2FE;
+  --cat-meeting-bg: rgba(251, 191, 36, 0.13);--cat-meeting-spine: #FBBF24;  --cat-meeting-text: #FEF3C7;
+  --cat-admin-bg: rgba(52, 211, 153, 0.13);  --cat-admin-spine: #34D399;    --cat-admin-text: #D1FAE5;
+  --cat-personal-bg: rgba(244, 114, 182, 0.13);--cat-personal-spine: #F472B6;--cat-personal-text: #FCE7F3;
+  --cat-break-bg: rgba(148, 163, 184, 0.12); --cat-break-spine: #94A3B8;    --cat-break-text: #E2E8F0;
+}
+
+/* ==========================================================================
+   Base Styles & Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.45;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography Enforcement */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+.tight-tracking {
+  letter-spacing: -0.02em;
+}
+
+/* Ban font weight 700 / 800 */
+b, strong {
+  font-weight: 600;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--text-primary);
+  color: var(--bg-canvas);
+}
+
+/* Minimal Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hairline);
+  border-radius: var(--radius-xs);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* Single-Border Split-Pane App Shell Layout */
+.app-container {
+  display: grid;
+  grid-template-rows: var(--header-height) 1fr;
+  grid-template-columns: var(--left-rail-width) 1fr var(--right-rail-width);
+  grid-template-areas:
+    "header header header"
+    "left-rail main-canvas right-rail";
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--bg-canvas);
+}
+
+.app-header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  height: var(--header-height);
+  background-color: var(--bg-panel);
+  border-bottom: 1px solid var(--border-hairline);
+  z-index: 20;
+}
+
+.left-rail {
+  grid-area: left-rail;
+  background-color: var(--bg-panel);
+  border-right: 1px solid var(--border-hairline);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-canvas {
+  grid-area: main-canvas;
+  background-color: var(--bg-canvas);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-rail {
+  grid-area: right-rail;
+  background-color: var(--bg-panel);
+  border-left: 1px solid var(--border-hairline);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Buttons System */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1;
+  padding: 0 10px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+  white-space: nowrap;
+  user-select: none;
+  outline: none;
+}
+
+.btn:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: var(--accent-contrast-text);
+  border: 1px solid transparent;
+}
+.btn-primary:hover {
+  opacity: 0.92;
+}
+.btn-primary:active {
+  opacity: 0.85;
+}
+
+.btn-secondary {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-hairline);
+}
+.btn-secondary:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-strong);
+}
+.btn-secondary:active {
+  background-color: var(--bg-active);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+}
+.btn-ghost:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+.btn-ghost:active {
+  background-color: var(--bg-active);
+}
+
+.btn-xs {
+  height: 22px;
+  padding: 0 6px;
+  font-size: var(--text-2xs);
+  border-radius: var(--radius-xs);
+}
+
+.btn-sm {
+  height: 26px;
+  padding: 0 8px;
+  font-size: var(--text-xs);
+}
+
+.btn-icon {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+.btn-icon-sm {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.btn-icon-xs {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 6px;
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  border-radius: var(--radius-xs);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Keyboard Shortcut Tag */
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  line-height: 1;
+}
+
+/* Category Dot */
+.cat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.cat-dot-deep_work { background-color: var(--cat-deep-spine); }
+.cat-dot-meetings { background-color: var(--cat-meeting-spine); }
+.cat-dot-admin { background-color: var(--cat-admin-spine); }
+.cat-dot-personal { background-color: var(--cat-personal-spine); }
+.cat-dot-break { background-color: var(--cat-break-spine); }
+
+/* Ledger Strip (No Slop Stat Boxes) */
+.ledger-strip {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: var(--text-xs);
+}
+
+.ledger-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 8px;
+}
+
+.ledger-item:not(:last-child) {
+  border-right: 1px solid var(--border-hairline);
+}
+
+.ledger-label {
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+}
+
+.ledger-val {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-top: 1px;
+}
+
